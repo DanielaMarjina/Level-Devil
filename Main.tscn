@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://—Pngtree—cartoon style ground texture seamless_15284635.jpg" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 509.5, 27 )
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 130, 397 )
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2( -1, -1 )
+
+[node name="Sprite" type="Sprite" parent="Ground"]
+position = Vector2( 509, 572.75 )
+scale = Vector2( 0.177627, 0.019761 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2( 511, 574 )
+shape = SubResource( 1 )
