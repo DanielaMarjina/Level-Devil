@@ -58,3 +58,9 @@ func _update_animation(direction):
 		# se mișcă pe X -> run
 		if anim.animation != "run":
 			anim.play("run")
+
+
+func _on_Door_body_entered(body):
+	if body.name == "Player":
+		get_tree().change_scene("res://Nivel2.tscn")
+
