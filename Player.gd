@@ -1,9 +1,12 @@
 extends KinematicBody2D
 
-var speed = 200
+var speed = 250
 var gravity = 600
 var velocity = Vector2.ZERO
 var jump_force = -350
+
+# prag sub care considerăm că jucătorul „a căzut”
+var fall_limit_y = 1000  # ajustează după nivel
 
 func _physics_process(delta):
 	# gravitație
@@ -27,7 +30,11 @@ func _physics_process(delta):
 	# mișcare fizică
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-	# actualizăm animația în funcție de direcție & dacă e pe podea
+	# dacă cade prea jos, resetează nivelul
+	if global_position.y > fall_limit_y:
+		get_tree().reload_current_scene()
+
+	# actualizăm animația
 	_update_animation(direction)
 
 
@@ -58,9 +65,11 @@ func _update_animation(direction):
 		# se mișcă pe X -> run
 		if anim.animation != "run":
 			anim.play("run")
+			
+			
 
 
 func _on_Door_body_entered(body):
 	if body.name == "Player":
-		get_tree().change_scene("res://Nivel2.tscn")
+		get_tree().change_scene("res://Level2.tscn")
 
