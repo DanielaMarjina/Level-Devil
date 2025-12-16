@@ -94,12 +94,11 @@ extents = Vector2( 51.5, 78.5 )
 [node name="Level3" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 146, 458 )
+position = Vector2( 1000, 458 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-position = Vector2( 60, -10 )
-rotation = -0.00796509
-scale = Vector2( 0.5, 0.6 )
+position = Vector2( 59.9968, -8.04914 )
+scale = Vector2( 0.5, 0.616124 )
 frames = SubResource( 18 )
 animation = "idle"
 playing = true
@@ -118,20 +117,21 @@ shape = SubResource( 19 )
 
 [node name="Background" type="Sprite" parent="."]
 show_behind_parent = true
-position = Vector2( 1251, 450 )
+position = Vector2( 1370, 533 )
 scale = Vector2( 2.16927, 1.44043 )
 texture = ExtResource( 1 )
 
-[node name="Door" type="Area2D" parent="."]
+[node name="DoorA" type="Area2D" parent="."]
 script = ExtResource( 5 )
+is_deadly = true
 
-[node name="Sprite" type="Sprite" parent="Door"]
-position = Vector2( 1700, 457 )
+[node name="Sprite" type="Sprite" parent="DoorA"]
+position = Vector2( 1604, 449 )
 scale = Vector2( 0.21994, 0.299847 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
-position = Vector2( 1686.5, 453 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorA"]
+position = Vector2( 1599, 456 )
 shape = SubResource( 20 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -140,3 +140,18 @@ offset = Vector2( 1, -118 )
 anchor_mode = 0
 current = true
 zoom = Vector2( 2.1, 1.7 )
+
+[node name="DoorB" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="DoorB"]
+position = Vector2( 567, 472 )
+scale = Vector2( 0.21994, 0.299847 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorB"]
+position = Vector2( 558, 473 )
+shape = SubResource( 20 )
+
+[connection signal="body_entered" from="DoorA" to="DoorA" method="_on_Door_body_entered"]
+[connection signal="body_entered" from="DoorB" to="DoorB" method="_on_Door_body_entered"]
