@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
-export var speed = 1000
-export var push_strength = 1.0  # cât de mult "împinge" platforma playerul
+export var speed = 1200
+export var push_strength = 60
+
 var active = false
 var player = null
 
@@ -17,12 +18,24 @@ func _physics_process(delta):
 	if not active:
 		return
 
-	# platforma se mișcă la stânga
-	var motion = Vector2(-speed, 0)
-	move_and_slide(motion)
+	# platforma NU poate fi blocată
+	global_position.x -= speed * delta
 
-	# împinge playerul doar dacă este pe platformă
-	if player and player.is_on_floor():
-		# blend între viteza playerului și platformei
-		var player_motion = motion * push_strength
-		player.move_and_slide(player_motion) 
+	if player and _player_on_platform():
+		# 🔥 EXACT CA ÎNAINTE – forță brutală
+		player.global_position.x -= speed * push_strength * delta
+
+
+func _player_on_platform() -> bool:
+	var space = get_world_2d().direct_space_state
+	var from = player.global_position
+	var to = from + Vector2(0, 10)
+
+	var result = space.intersect_ray(
+		from,
+		to,
+		[player],
+		collision_mask
+	)
+
+	return result and result.collider == self
