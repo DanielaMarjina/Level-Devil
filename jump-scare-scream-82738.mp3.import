@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/jump-scare-scream-82738.mp3-01890a309a08978c55e1b3c9ece6b9cd.mp3str"
+
+[deps]
+
+source_file="res://jump-scare-scream-82738.mp3"
+dest_files=[ "res://.import/jump-scare-scream-82738.mp3-01890a309a08978c55e1b3c9ece6b9cd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cotton-toys-soundroll-main-version-16753-01-17.mp3-50f4f6625140a085cd6a01a73dcec490.mp3str"
+
+[deps]
+
+source_file="res://cotton-toys-soundroll-main-version-16753-01-17.mp3"
+dest_files=[ "res://.import/cotton-toys-soundroll-main-version-16753-01-17.mp3-50f4f6625140a085cd6a01a73dcec490.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

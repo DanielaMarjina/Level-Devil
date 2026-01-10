@@ -39,8 +39,17 @@ func _physics_process(delta):
 	var motion = Vector2(dir * current_speed * delta, 0)
 
 	var collision = move_and_collide(motion)
-	if collision and collision.collider and collision.collider.name == "Player":
-		get_tree().reload_current_scene()
+	
+	# --- AICI AM FĂCUT MODIFICAREA PENTRU SUNET ---
+	if collision and collision.collider:
+		if collision.collider.name == "Player":
+			# Verificăm dacă player-ul are funcția die() (cea cu sunetul)
+			if collision.collider.has_method("die"):
+				collision.collider.die()
+			else:
+				# Backup: dacă nu găsește funcția, dă restart simplu
+				get_tree().reload_current_scene()
+	# -----------------------------------------------
 
 	# LOGICA LIMITELOR
 

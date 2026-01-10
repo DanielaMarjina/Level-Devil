@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://cotton-toys-soundroll-main-version-16753-01-17.mp3" type="AudioStream" id=1]
+
+[node name="GlobalMusic" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -37.58
+autoplay = true

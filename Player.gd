@@ -5,14 +5,46 @@ var gravity = 600
 var velocity = Vector2.ZERO
 var jump_force = -350
 
-# prag sub care considerăm că jucătorul „a căzut”
-var fall_limit_y = 1000  # ajustează după nivel
+# Prag sub care considerăm că jucătorul „a căzut”
+var fall_limit_y = 1000 
+var is_dead = false
+func die():
+	# ADAPTARE 2: Dacă suntem deja morți, oprim funcția imediat!
+	# Asta rezolvă problema cu țepul mobil care declanșa sunetul de 100 de ori.
+	if is_dead:
+		return
+	
+	is_dead = true # Setăm steagul pe "mort"
+	
+	# Oprim fizica și mișcarea
+	velocity = Vector2.ZERO 
+	set_physics_process(false)
+	
+	# ADAPTARE 3: Ascundem jucătorul INSTANTANEU
+	# Așa nu se mai vede urât cum intră în țepi în timpul morții
+	hide()
+	
+	# Dezactivăm coliziunea ca să nu ne mai lovească nimic altceva
+	# (Aceasta e siguranța supremă pentru țepii mobili)
+	$CollisionShape2D.set_deferred("disabled", true)
+
+	# Redăm sunetul
+	if has_node("DeathSound"):
+		$DeathSound.play()
+		# ADAPTARE 4: Așteptăm exact cât ține sunetul, nu o secundă fixă!
+		yield($DeathSound, "finished")
+	else:
+		# Dacă nu avem sunet, dăm o pauză foarte scurtă (0.1s)
+		yield(get_tree().create_timer(0.1), "timeout")
+	
+	# Restartăm nivelul
+	get_tree().reload_current_scene()
 
 func _physics_process(delta):
-	# gravitație
+	# Gravitație
 	velocity.y += gravity * delta
 
-	# mișcare pe X
+	# Mișcare pe X
 	var direction = 0
 	if Input.is_action_pressed("ui_right"):
 		direction = 1
@@ -23,52 +55,47 @@ func _physics_process(delta):
 	else:
 		velocity.x = 0
 
-	# săritură
+	# Săritură
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = jump_force
+		# Asigură-te că nodul se numește exact JumpSound
+		if has_node("JumpSound"):
+			$JumpSound.play()
 
-	# mișcare fizică
+	# Aplicăm mișcarea
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-	# dacă cade prea jos, resetează nivelul
+	# Dacă cade prea jos (în groapă), moare
 	if global_position.y > fall_limit_y:
-		get_tree().reload_current_scene()
+		die()
 
-	# actualizăm animația
+	# Actualizăm animația
 	_update_animation(direction)
 
 
 func _update_animation(direction):
-	var anim = $AnimatedSprite   # schimbă dacă nodul tău are alt nume
+	# Verificăm dacă există nodul AnimatedSprite înainte să îl folosim
+	if not has_node("AnimatedSprite"):
+		return
+		
+	var anim = $AnimatedSprite 
 
-	# întoarce sprite-ul stânga/dreapta
+	# Întoarce sprite-ul stânga/dreapta
 	if direction != 0:
 		anim.flip_h = direction < 0
 
-	# dacă NU e pe podea -> săritură
+	# Dacă NU e pe podea -> animație de săritură
 	if not is_on_floor():
-		# dacă ai animație "jump"
-		if anim.animation != "jump":
+		if anim.frames.has_animation("jump") and anim.animation != "jump":
 			anim.play("jump")
 		return
 
-	# dacă e pe podea:
+	# Dacă e pe podea:
 	if direction == 0:
-		# stă pe loc -> idle (sau primul frame din run)
-		if anim.animation != "idle":
+		# Stă pe loc -> idle
+		if anim.frames.has_animation("idle") and anim.animation != "idle":
 			anim.play("idle")
-			# dacă nu ai animație "idle", poți face:
-			# anim.play("run")
-			# anim.stop()
-			# anim.frame = 0
 	else:
-		# se mișcă pe X -> run
-		if anim.animation != "run":
+		# Se mișcă -> run
+		if anim.frames.has_animation("run") and anim.animation != "run":
 			anim.play("run")
-			
-			
-
-
-func _on_Door_body_entered(body):
-	if body.name == "Player":
-		get_tree().change_scene("res://Level2.tscn")

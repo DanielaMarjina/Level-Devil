@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://ChatGPT Image Dec 6, 2025 at 11_49_32 AM.png" type="Texture" id=1]
 [ext_resource path="res://ChatGPT Image Dec 5, 2025 at 11_56_46 PM.png" type="Texture" id=2]
@@ -15,25 +15,10 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 256, 341 )
 
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 256, 341 )
-
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 256, 0, 256, 341 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 768, 341, 256, 341 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 682, 256, 341 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -77,7 +62,7 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 15 ) ],
 "loop": true,
 "name": "jump",
 "speed": 14.0
@@ -98,7 +83,7 @@ extents = Vector2( 36, 78.5 )
 extents = Vector2( 141.086, 32.25 )
 
 [sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 46.625, 51.25 )
+extents = Vector2( 99.8125, 51.25 )
 
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 372.5, 30.5 )
@@ -179,7 +164,7 @@ shape = SubResource( 21 )
 [node name="Trigger" type="Area2D" parent="FallingPlatform"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallingPlatform/Trigger"]
-position = Vector2( 1086, 326 )
+position = Vector2( 1105, 321 )
 shape = SubResource( 22 )
 
 [node name="Ground2" type="StaticBody2D" parent="."]
