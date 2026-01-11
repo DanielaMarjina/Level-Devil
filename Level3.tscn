@@ -112,6 +112,7 @@ texture = ExtResource( 1 )
 
 [node name="DoorA" type="Area2D" parent="."]
 script = ExtResource( 5 )
+is_always_trap = true
 is_deadly = true
 
 [node name="Sprite" type="Sprite" parent="DoorA"]
@@ -132,6 +133,7 @@ zoom = Vector2( 2.1, 1.7 )
 
 [node name="DoorB" type="Area2D" parent="."]
 script = ExtResource( 5 )
+is_always_trap = true
 is_deadly = true
 
 [node name="Sprite" type="Sprite" parent="DoorB"]
@@ -148,7 +150,12 @@ position = Vector2( 2142, 568 )
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecretExit"]
-position = Vector2( 178, 6.5 )
+position = Vector2( 176, 11 )
+scale = Vector2( 10, 10 )
+shape = SubResource( 21 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SecretExit"]
+position = Vector2( -2299, 5 )
 scale = Vector2( 10, 10 )
 shape = SubResource( 21 )
 
