@@ -1,14 +1,22 @@
-Level 1: A spike which seemed to be static, comes fast at you and it kills you, then, if and after you jump it, it comes right back just as fast to kill you again.
+# Level Devil
+A short but deceptive game where nothing behaves the way you expect.
 
-<img width="823" height="486" alt="Screenshot 2026-03-01 173736" src="https://github.com/user-attachments/assets/7e14cb1f-e3c4-4e93-b034-cf2489c25ee6" />
+## Level 1
+A spike that looks static suddenly rushes toward you and kills you. After you jump over it, it comes back just as fast to kill you again.
 
-Level 2: One of the platforms will fall as soon as you touch it and then when you make it towards the door and think you've made it, a block that was invisible appears and pushes you rapidly off the screen.
+<img width="823" height="486" alt="Screenshot 2026-03-01 173736" src="https://github.com/user-attachments/assets/ea28b9f1-0be1-4eb4-bd8d-a5460e3c8fda" />
 
-<img width="826" height="488" alt="Screenshot 2026-03-01 173929" src="https://github.com/user-attachments/assets/119f0195-83a5-4fe2-82f0-72f015fef96b" />
+## Level 2
+One platform falls the moment you touch it. When you reach the door and think you’ve won, an invisible block appears and pushes you off the screen.
 
-Level 3: You have 2 identical doors, and neither is good. The catch is you have to jump over both doors and when you leave the screen, you finally end the game.
+<img width="826" height="488" alt="Screenshot 2026-03-01 173929" src="https://github.com/user-attachments/assets/031feb12-7581-44d9-af25-f15fdf69f72d" />
 
-<img width="827" height="477" alt="Screenshot 2026-03-01 173946" src="https://github.com/user-attachments/assets/80e3bfd0-0961-4582-9fce-821a54ec5fd4" />
+## Level 3
+Two identical doors, both deadly. The only way to win is to jump over both doors and leave the screen.
 
-<img width="939" height="548" alt="image" src="https://github.com/user-attachments/assets/2ea97f07-f132-4b18-9a7d-b7f157fe8e44" />
+<img width="827" height="477" alt="Screenshot 2026-03-01 173946" src="https://github.com/user-attachments/assets/c8d213ad-3daf-4e9c-8c9b-bea267fa0202" />
 
+## End
+Survive all the traps and reach the final scene.
+
+<img width="939" height="548" alt="Screenshot 2026-03-01 174802" src="https://github.com/user-attachments/assets/aaa6d40c-5188-4a80-a968-2aecdf05f05c" />
